@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luna Haven</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#100812;
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND GLOW */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:#ff2fac;
+    filter:blur(150px);
+    opacity:.13;
+    top:-180px;
+    left:-180px;
+    z-index:-2;
+    animation:glow1 8s infinite alternate;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:#792cff;
+    filter:blur(160px);
+    opacity:.13;
+    right:-200px;
+    bottom:-200px;
+    z-index:-2;
+    animation:glow2 10s infinite alternate;
+}
+
+@keyframes glow1{
+    to{transform:translate(180px,150px);}
+}
+
+@keyframes glow2{
+    to{transform:translate(-150px,-120px);}
+}
+
+
+/* FLOATING ICONS */
+
+.float{
+    position:fixed;
+    z-index:-1;
+    opacity:.3;
+    font-size:24px;
+    animation:float 7s infinite ease-in-out;
+}
+
+.f1{top:25%;left:7%}
+.f2{top:45%;right:8%;animation-delay:2s}
+.f3{bottom:18%;left:15%;animation-delay:3s}
+.f4{bottom:30%;right:15%;animation-delay:1s}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0) rotate(0);
+    }
+    50%{
+        transform:translateY(-35px) rotate(20deg);
+    }
+}
+
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    padding:18px;
+    text-align:center;
+    background:rgba(16,8,18,.88);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+    font-size:32px;
+    font-weight:bold;
+    background:linear-gradient(
+        90deg,
+        #ff4fbd,
+        #d493ff,
+        white,
+        #ff4fbd
+    );
+    background-size:200%;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:gradient 4s linear infinite;
+}
+
+@keyframes gradient{
+    to{background-position:200%;}
+}
+
+.tagline{
+    color:#a997aa;
+    margin-top:6px;
+    font-size:13px;
+}
+
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:60px 20px 35px;
+}
+
+.hero h1{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.hero h1 span{
+    color:#ff55c5;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:#c4b7c5;
+    line-height:1.7;
+}
+
+.whatsapp{
+    margin-top:25px;
+    display:inline-block;
+    background:#25d366;
+    color:white;
+    text-decoration:none;
+    padding:14px 24px;
+    border-radius:30px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.whatsapp:hover{
+    transform:translateY(-4px);
+}
+
+
+/* =========================
+   NEW CATEGORY STYLE
+========================= */
+
+.categories{
+    max-width:1150px;
+    margin:20px auto 45px;
+    padding:0 20px;
+}
+
+.categories h2{
+    text-align:center;
+    margin-bottom:25px;
+    font-size:26px;
+}
+
+.categoryGrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.categoryCard{
+    position:relative;
+    min-height:190px;
+    padding:25px;
+    text-align:left;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    color:white;
+    cursor:pointer;
+    overflow:hidden;
+    background:#18101b;
+    transition:.35s;
+}
+
+.categoryCard::before{
+    content:"";
+    position:absolute;
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    background:#ff38ae;
+    filter:blur(65px);
+    opacity:.18;
+    right:-50px;
+    top:-60px;
+}
+
+.categoryCard:nth-child(2)::before{
+    background:#8c42ff;
+}
+
+.categoryCard:nth-child(3)::before{
+    background:#ff76ad;
+}
+
+.categoryCard:hover{
+    transform:translateY(-8px);
+    border-color:#ff55c5;
+    box-shadow:0 15px 40px rgba(255,50,190,.18);
+}
+
+.categoryTop{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
+    z-index:2;
+}
+
+.categoryIcon{
+    width:58px;
+    height:58px;
+    border-radius:17px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:29px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.arrow{
+    font-size:24px;
+    color:#ff68c9;
+    transition:.3s;
+}
+
+.categoryCard:hover .arrow{
+    transform:translateX(6px);
+}
+
+.categoryCard h3{
+    margin-top:28px;
+    font-size:20px;
+    position:relative;
+    z-index:2;
+}
+
+.categoryCard p{
+    margin-top:7px;
+    color:#9e909f;
+    font-size:13px;
+    position:relative;
+    z-index:2;
+}
+
+
+/* SEARCH */
+
+.searchBox{
+    max-width:700px;
+    margin:0 auto 35px;
+    padding:0 20px;
+}
+
+.searchBox input{
+    width:100%;
+    padding:16px 20px;
+    border-radius:30px;
+    border:1px solid #4b3150;
+    background:#1b0e1e;
+    color:white;
+    outline:none;
+    font-size:15px;
+}
+
+.searchBox input:focus{
+    border-color:#ff4fbd;
+}
+
+
+/* PRODUCTS */
+
+.products{
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px 70px;
+}
+
+.products h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(
+        auto-fit,
+        minmax(220px,1fr)
+    );
+    gap:22px;
+}
+
+
+/* PRODUCT CARD */
+
+.card{
+    background:rgba(28,14,32,.92);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 10px 35px rgba(0,0,0,.25);
+    transition:.35s;
+    animation:cardAppear .6s ease;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(255,75,190,.7);
+}
+
+@keyframes cardAppear{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.productImg{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+    display:block;
+    background:#241327;
+}
+
+.cardContent{
+    padding:17px;
+}
+
+.categoryLabel{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    background:rgba(255,70,190,.1);
+    color:#ff72ca;
+    font-size:11px;
+    margin-bottom:9px;
+}
+
+.card h3{
+    margin-bottom:8px;
+    font-size:18px;
+}
+
+.price{
+    color:#ff65c7;
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.description{
+    color:#aaa;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+.buy,
+.delete{
+    width:100%;
+    border:none;
+    border-radius:25px;
+    padding:13px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.buy{
+    background:#25d366;
+}
+
+.delete{
+    margin-top:8px;
+    background:#e9365c;
+}
+
+
+/* EMPTY */
+
+.empty{
+    grid-column:1/-1;
+    text-align:center;
+    padding:65px 20px;
+    color:#958598;
+}
+
+.emptyIcon{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(8px);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modalBox{
+    width:100%;
+    max-width:500px;
+    background:#1b0d1f;
+    border:1px solid #57365b;
+    border-radius:24px;
+    padding:25px;
+    animation:modalPop .35s ease;
+}
+
+@keyframes modalPop{
+    from{
+        opacity:0;
+        transform:scale(.8);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.modalBox h2{
+    margin-bottom:18px;
+}
+
+.modalText{
+    color:#a99aaa;
+    font-size:13px;
+    margin-bottom:12px;
+}
+
+.modalBox input,
+.modalBox select{
+    width:100%;
+    padding:14px;
+    margin:7px 0;
+    border-radius:12px;
+    border:1px solid #4b3150;
+    background:#100812;
+    color:white;
+    outline:none;
+}
+
+.fileLabel{
+    display:block;
+    margin:13px 0 5px;
+    color:#bbb;
+    font-size:13px;
+}
+
+.addBtn,
+.closeBtn{
+    width:100%;
+    border:none;
+    border-radius:30px;
+    padding:13px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.addBtn{
+    margin-top:10px;
+    background:linear-gradient(
+        135deg,
+        #ff32aa,
+        #8e37ff
+    );
+}
+
+.closeBtn{
+    margin-top:8px;
+    background:#38233d;
+}
+
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:25px;
+    border-top:1px solid rgba(255,255,255,.08);
+    color:#88788b;
+    font-size:13px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .logo{
+        font-size:27px;
+    }
+
+    .categoryGrid{
+        grid-template-columns:1fr;
+    }
+
+    .categoryCard{
+        min-height:160px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="float f1">✦</div>
+<div class="float f2">♡</div>
+<div class="float f3">✧</div>
+<div class="float f4">💎</div>
+
+
+<header>
+
+    <div class="logo">
+        🌙 LUNA HAVEN
+    </div>
+
+    <div class="tagline">
+        Jewelry • Girly Essentials • Skincare
+    </div>
+
+</header>
+
+
+<section class="hero">
+
+    <h1>
+        Welcome to
+        <span>Luna Haven</span> ✨
+    </h1>
+
+    <p>
+        Discover beautiful jewelry, cute girly
+        essentials and skincare products.
+        Find your favorites and contact us
+        directly through WhatsApp.
+    </p>
+
+    <a
+        class="whatsapp"
+        href="https://wa.me/2347069546256"
+        target="_blank">
+
+        💬 Contact Luna Haven
+
+    </a>
+
+</section>
+
+
+<!-- CATEGORY CARDS -->
+
+<section class="categories">
+
+    <h2>
+        ✨ Explore Collections
+    </h2>
+
+    <div class="categoryGrid">
+
+
+        <button
+            class="categoryCard"
+            onclick="filterCategory('Jewelry')">
+
+            <div class="categoryTop">
+
+                <div class="categoryIcon">
+                    💎
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </div>
+
+            <h3>
+                Jewelry
+            </h3>
+
+            <p>
+                Necklaces, bracelets,
+                rings & more
+            </p>
+
+        </button>
+
+
+        <button
+            class="categoryCard"
+            onclick="filterCategory('Girly Essentials')">
+
+            <div class="categoryTop">
+
+                <div class="categoryIcon">
+                    🎀
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </div>
+
+            <h3>
+                Girly Essentials
+            </h3>
+
+            <p>
+                Cute everyday essentials
+                & accessories
+            </p>
+
+        </button>
+
+
+        <button
+            class="categoryCard"
+            onclick="filterCategory('Skincare')">
+
+            <div class="categoryTop">
+
+                <div class="categoryIcon">
+                    🧴
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </div>
+
+            <h3>
+                Skincare
+            </h3>
+
+            <p>
+                Beauty & skincare
+                essentials
+            </p>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="searchBox">
+
+    <input
+        type="text"
+        id="search"
+        placeholder="🔎 Search products..."
+        oninput="displayProducts()">
+
+</div>
+
+
+<!-- PRODUCTS -->
+
+<section class="products">
+
+    <h2>
+        🛍️ Available Products
+    </h2>
+
+    <div
+        id="productGrid"
+        class="grid">
+    </div>
+
+</section>
+
+
+<footer>
+
+    © 2026 Luna Haven
+    <br>
+    Jewelry • Girly Essentials • Skincare
+
+</footer>
+
+
+<!-- =========================
+     HIDDEN ADMIN LOGIN
+========================= -->
+
+<div
+    class="modal"
+    id="loginModal">
+
+    <div class="modalBox">
+
+        <h2>
+            🔐 Admin Access
+        </h2>
+
+        <p class="modalText">
+            Enter the admin passcode.
+        </p>
+
+        <input
+            type="password"
+            id="passcode"
+            placeholder="Passcode">
+
+        <button
+            class="addBtn"
+            onclick="checkPasscode()">
+
+            Enter
+
+        </button>
+
+        <button
+            class="closeBtn"
+            onclick="closeModal('loginModal')">
+
+            Cancel
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ADMIN PRODUCT PANEL -->
+
+<div
+    class="modal"
+    id="adminModal">
+
+    <div class="modalBox">
+
+        <h2>
+            👑 Luna Haven Admin
+        </h2>
+
+        <p class="modalText">
+            Post a new product.
+        </p>
+
+        <input
+            type="text"
+            id="productName"
+            placeholder="Product name">
+
+        <input
+            type="number"
+            id="productPrice"
+            placeholder="Price in ₦">
+
+        <select id="productCategory">
+
+            <option value="Jewelry">
+                💎 Jewelry
+            </option>
+
+            <option value="Girly Essentials">
+                🎀 Girly Essentials
+            </option>
+
+            <option value="Skincare">
+                🧴 Skincare
+            </option>
+
+        </select>
+
+        <input
+            type="text"
+            id="productDescription"
+            placeholder="Short description">
+
+        <label class="fileLabel">
+            📸 Product Picture
+        </label>
+
+        <input
+            type="file"
+            id="productImage"
+            accept="image/*">
+
+        <button
+            class="addBtn"
+            onclick="addProduct()">
+
+            🚀 Post Product
+
+        </button>
+
+        <button
+            class="closeBtn"
+            onclick="closeModal('adminModal')">
+
+            Close
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   SETTINGS
+========================= */
+
+const PASSCODE = "luna88";
+
+const WHATSAPP = "2347069546256";
+
+let products =
+    JSON.parse(
+        localStorage.getItem(
+            "lunaHavenProducts"
+        )
+    ) || [];
+
+let adminLoggedIn = false;
+
+
+/* =========================
+   HIDDEN ADMIN ACCESS
+========================= */
+
+/*
+   ADMIN IS NOT SHOWN ON THE PAGE.
+
+   To open it:
+   Click the Luna Haven logo 5 times quickly.
+*/
+
+let logoClicks = 0;
+let logoTimer;
+
+document
+    .querySelector(".logo")
+    .addEventListener("click", function(){
+
+        logoClicks++;
+
+        clearTimeout(logoTimer);
+
+        logoTimer = setTimeout(function(){
+            logoClicks = 0;
+        },1500);
+
+        if(logoClicks >= 5){
+
+            logoClicks = 0;
+
+            document.getElementById(
+                "loginModal"
+            ).style.display = "flex";
+
+        }
+
+    });
+
+
+/* =========================
+   DISPLAY PRODUCTS
+========================= */
+
+function displayProducts(){
+
+    const grid =
+        document.getElementById(
+            "productGrid"
+        );
+
+    const search =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+
+    grid.innerHTML = "";
+
+
+    const filtered =
+        products.filter(product =>
+
+            product.name
+            .toLowerCase()
+            .includes(search)
+
+            ||
+
+            product.category
+            .toLowerCase()
+            .includes(search)
+
+            ||
+
+            product.description
+            .toLowerCase()
+            .includes(search)
+
+        );
+
+
+    if(filtered.length === 0){
+
+        grid.innerHTML = `
+
+            <div class="empty">
+
+                <div class="emptyIcon">
+                    🌙
+                </div>
+
+                <h3>
+                    No products found
+                </h3>
+
+                <p>
+                    Products posted for sale
+                    will appear here.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    filtered.forEach(product => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card";
+
+        card.innerHTML = `
+
+            <img
+                class="productImg"
+                src="${escapeHTML(product.image)}"
+                alt="${escapeHTML(product.name)}">
+
+            <div class="cardContent">
+
+                <span class="categoryLabel">
+                    ${escapeHTML(product.category)}
+                </span>
+
+                <h3>
+                    ${escapeHTML(product.name)}
+                </h3>
+
+                <div class="price">
+                    ₦${Number(
+                        product.price
+                    ).toLocaleString()}
+                </div>
+
+                <p class="description">
+                    ${escapeHTML(
+                        product.description
+                    )}
+                </p>
+
+                <button
+                    class="buy"
+                    onclick="contactSeller(
+                        '${escapeJS(product.name)}'
+                    )">
+
+                    💬 Buy / Enquire
+
+                </button>
+
+                <div
+                    id="delete-${product.id}">
+                </div>
+
+            </div>
+        `;
+
+        grid.appendChild(card);
+
+
+        if(adminLoggedIn){
+
+            document.getElementById(
+                "delete-" + product.id
+            ).innerHTML = `
+
+                <button
+                    class="delete"
+                    onclick="deleteProduct(
+                        ${product.id}
+                    )">
+
+                    🗑️ Delete Product
+
+                </button>
+
+            `;
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   CATEGORY FILTER
+========================= */
+
+function filterCategory(category){
+
+    document.getElementById(
+        "search"
+    ).value = category;
+
+    displayProducts();
+
+    document
+        .querySelector(".products")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================
+   WHATSAPP
+========================= */
+
+function contactSeller(name){
+
+    const message =
+        "Hello Luna Haven 👋\n\n" +
+        "I am interested in: " +
+        name;
+
+    const url =
+        "https://wa.me/" +
+        WHATSAPP +
+        "?text=" +
+        encodeURIComponent(message);
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
+
+
+/* =========================
+   CHECK ADMIN
+========================= */
+
+function checkPasscode(){
+
+    const entered =
+        document.getElementById(
+            "passcode"
+        ).value;
+
+    if(entered === PASSCODE){
+
+        adminLoggedIn = true;
+
+        closeModal("loginModal");
+
+        document.getElementById(
+            "adminModal"
+        ).style.display = "flex";
+
+        displayProducts();
+
+    }else{
+
+        alert(
+            "❌ Incorrect admin passcode!"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   ADD PRODUCT
+========================= */
+
+function addProduct(){
+
+    const name =
+        document.getElementById(
+            "productName"
+        ).value.trim();
+
+    const price =
+        document.getElementById(
+            "productPrice"
+        ).value;
+
+    const category =
+        document.getElementById(
+            "productCategory"
+        ).value;
+
+    const description =
+        document.getElementById(
+            "productDescription"
+        ).value.trim();
+
+    const imageFile =
+        document.getElementById(
+            "productImage"
+        ).files[0];
+
+
+    if(
+        !name ||
+        !price ||
+        !description ||
+        !imageFile
+    ){
+
+        alert(
+            "⚠️ Please complete all fields."
+        );
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(event){
+
+            const newProduct = {
+
+                id:Date.now(),
+
+                name:name,
+
+                price:price,
+
+                category:category,
+
+                description:description,
+
+                image:event.target.result
+
+            };
+
+
+            products.unshift(
+                newProduct
+            );
+
+
+            localStorage.setItem(
+                "lunaHavenProducts",
+                JSON.stringify(products)
+            );
+
+
+            clearForm();
+
+            closeModal(
+                "adminModal"
+            );
+
+            displayProducts();
+
+
+            alert(
+                "✅ Product posted successfully!"
+            );
+
+        };
+
+
+    reader.readAsDataURL(
+        imageFile
+    );
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteProduct(id){
+
+    if(!adminLoggedIn){
+
+        return;
+
+    }
+
+    if(
+        !confirm(
+            "Delete this product?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    products =
+        products.filter(
+            product =>
+            product.id !== id
+        );
+
+
+    localStorage.setItem(
+        "lunaHavenProducts",
+        JSON.stringify(products)
+    );
+
+
+    displayProducts();
+
+}
+
+
+/* =========================
+   CLEAR FORM
+========================= */
+
+function clearForm(){
+
+    document.getElementById(
+        "productName"
+    ).value = "";
+
+    document.getElementById(
+        "productPrice"
+    ).value = "";
+
+    document.getElementById(
+        "productDescription"
+    ).value = "";
+
+    document.getElementById(
+        "productImage"
+    ).value = "";
+
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeModal(id){
+
+    document.getElementById(
+        id
+    ).style.display = "none";
+
+}
+
+
+/* =========================
+   ESCAPE
+========================= */
+
+function escapeHTML(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+function escapeJS(text){
+
+    return String(text)
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/\n/g,"\\n");
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+displayProducts();
+
+</script>
+
+</body>
+</html>
